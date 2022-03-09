@@ -34,8 +34,11 @@ function submitIssue(e) {
 
 const deleteIssue = id => {
   const issues = JSON.parse(localStorage.getItem('issues'));
-  const remainingIssues = issues.filter(issue => issue.id !== id )
+  const remainingIssues = issues.filter(issue => issue.id != id )
   localStorage.setItem('issues', JSON.stringify(remainingIssues));
+  localStorage.removeItem(fetchIssues())
+//  const lacalData = localStorage.setItem('issues', JSON.stringify(remainingIssues));
+//  console.log(lacalData)
   
 }
 
