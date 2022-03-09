@@ -16,8 +16,7 @@ function submitIssue(e) {
     console.log(issues)
   }
   issues.push(issue);
-  localStorage.setItem('issues', JSON.stringify(issues));
-
+  localStorage.setItem('issues', JSON.stringify(issues)); //aita khali cilo tai ekta key pathacce amra jani server pair hishebe orthat key value kore data rakhe . aikhane key ta pathalo issues nam diye 
   document.getElementById('issueInputForm').reset();
   fetchIssues();
   e.preventDefault();
@@ -26,7 +25,8 @@ function submitIssue(e) {
 // const closeIssue = id => {
   const setStatusClosed = id => {
   const issues = JSON.parse(localStorage.getItem('issues'));
-  const currentIssue = issues.find(issue => issue.id === id);
+  // const currentIssue = issues.find(issue => issue.id === id); find to 1 ta dibe jeita first pabe but filter sob gula dibe
+  const currentIssue = issues.filter(issue => issue.id != id);
   currentIssue.status = 'Closed';
   localStorage.setItem('issues', JSON.stringify(issues));
   fetchIssues();
@@ -36,7 +36,8 @@ const deleteIssue = id => {
   const issues = JSON.parse(localStorage.getItem('issues'));
   const remainingIssues = issues.filter(issue => issue.id != id )
   localStorage.setItem('issues', JSON.stringify(remainingIssues));
-  localStorage.removeItem(fetchIssues())
+  fetchIssues();
+  // localStorage.removeItem(fetchIssues())
 //  const lacalData = localStorage.setItem('issues', JSON.stringify(remainingIssues));
 //  console.log(lacalData)
   
